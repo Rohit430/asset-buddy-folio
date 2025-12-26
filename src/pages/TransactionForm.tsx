@@ -132,16 +132,16 @@ const TransactionForm = () => {
                   control={form.control}
                   name="investment_id"
                   render={({ field }) => (
-                    <FormItem>
+                <FormItem>
                       <FormLabel>Existing Investment (Optional)</FormLabel>
-                      <Select onValueChange={field.onChange} value={field.value}>
+                      <Select onValueChange={(val) => field.onChange(val === "new" ? "" : val)} value={field.value || "new"}>
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder="Select or create new" />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="">Create New Investment</SelectItem>
+                          <SelectItem value="new">Create New Investment</SelectItem>
                           {investments.map((inv) => (
                             <SelectItem key={inv.id} value={inv.id}>
                               {inv.name} ({inv.asset_type})
